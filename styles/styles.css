@@ -249,24 +249,25 @@ footer {
 
     #prevPage, #nextPage {
         padding: 8px 30px;
-        font-size: 30px;
+        font-size: 25px;
     }
 
     input {
-        font-size: 30px;
+        font-size: 25px;
         width: 500px;
     }
 
     .card {
-        font-size: 30px;
+        font-size: 19px;
+        gap: 15px;
     }
 
     h2 {
-        font-size: 50px;
+        font-size: 30px;
     }
 
     .card > img {
-        width: 300px;
-        height: 350px;
+        width: 230px;
+        height: 270px;
     }
 }
