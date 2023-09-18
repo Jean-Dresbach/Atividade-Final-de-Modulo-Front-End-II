@@ -3,6 +3,8 @@ const api = axios.create({
 });
 
 const containerCards = document.getElementById("container-cards");
+const prevPage = document.getElementById("prevPage");
+const nextPage = document.getElementById("nextPage");
 
 async function fetchCharacters() {
     try {
@@ -48,9 +50,7 @@ function showCharacters(characters) {
             closeButton.addEventListener("click", () => {
                 window.location.reload();
             });
-            
             card.style.backgroundColor = "#00b4cc90";
-            card.style.width = "300px"
             card.style.border = "2px solid white";
             card.style.padding = "30px";
             card.innerHTML = `
