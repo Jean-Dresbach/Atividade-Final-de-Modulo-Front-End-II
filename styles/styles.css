@@ -4,23 +4,23 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
-    position: relative;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
     overflow-x: hidden;
-    width: 100vw;
-    height: 100vh;
-    gap: 20px;
-    background-image: url(../images/cropped-RM_page-header_background1-3.png);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size:cover;
+    background-image: url(../images/cropped-RM_page-header_background1-3.png);
+    width: 100%;
+    min-height: 100vh;
+    gap: 20px;
 }
 
 header {
@@ -29,12 +29,11 @@ header {
     align-items: center;
     width: 100vw;
     height: 100px;
-    padding: 0px 30px;
 }
 
 #rick-and-morty-logo {
     background-image: url(../images/Rick-And-Morty-Logo.png);
-    background-size: 100% 190%;
+    background-size: 100% 150%;
     background-position: center;
     background-repeat: no-repeat;
     width: 300px;
@@ -55,34 +54,29 @@ main {
 
 nav {
     display: flex;
-    border-radius: 15px 15px 0 0;
     justify-content: space-evenly;
     align-items: center;
+    height: auto;
+    box-shadow: 0px 10px 10px 2px #0000007c;
+    background-color: rgb(67, 67, 67);
+    border-radius: 15px 15px 5px 5px;
     max-width: 1300px;
     width: 90vw;
-    height: 80px;
-    background-color: rgb(67, 67, 67);
-    padding: 0px 20px;
-    box-shadow: 0px 10px 10px 2px #0000007c;
+    padding: 10px 20px;
     z-index: 1;
 }
 
 nav > div {
     display: flex;
-    gap: 40px;
 }
 
 #prevPage, #nextPage {
     background-color: #00b5cc;
-    font-family: 'Roboto', sans-serif;
-    border-radius: 10px;
     color: white;
     font-size: large;
-    padding: 5px 30px;
-    box-shadow: none;
     border: none;
-    box-shadow: 0px 5px 10px 0px #000000;
     cursor: pointer;
+    box-shadow: 0px 5px 10px 0px #000000;
 }
 
 #prevPage:hover, #nextPage:hover {
@@ -92,15 +86,13 @@ nav > div {
 input {
     outline: none;
     border:none;
-    border-radius: 10px;
+    text-align: center;
     background-color: rgb(255, 255, 255);
     color: #00b5cc;
     padding: 25px 10px;
     font-size: 18px;
     width: 300px;
     height: 40px;
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
 }
 
 input::placeholder {
@@ -108,80 +100,73 @@ input::placeholder {
 }
 
 #container-cards {
-    background-color: hsl(180, 100%, 50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    background-color: #00ffff;
     width: 88vw;
     height: 60vh;
     padding: 30px 20px;
     border-radius: 0 0 15px 15px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 50px;
-    overflow: auto;
     max-width: 1270px;
 }
 
-#close-button {
-    display: none;
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    object-position: center;
-    z-index: 1;
-    right: 50px;
-    cursor: pointer;
-    filter: hue-rotate(180deg);
-}
-
-#close-button:hover {
-    filter: none;
-}
-
-.card {
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    border-radius: 10px;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-}
-
-.card > h2 {
-    color: #574D68;
-}
-
-.card > img {
-    width: 200px;
-    height: 250px;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 15px;
-    opacity: .7;
+.character-img {
+    opacity: .6;
     filter: grayscale(1);
-}
-
-.card > img:hover {
-    opacity: 1;
-    filter: grayscale(0);
-    transform: scale(1.1);
-    transition: ease-in-out 200ms;
+    border-radius: 15px;
+    object-fit: cover;
+    object-position: center;
     cursor: pointer;
 }
 
-#focused-card {
-    cursor: default;
+.character-img:hover {
+    transform: scale(1.1);
+    filter: grayscale(0);
+    transition: ease-in-out 300ms;
+    opacity: 1;
+
+}
+
+.detailed-character-card {
+    display: flex;
+    background-color: #34008d87;
+    border: 2px solid #fff;
+    color: white;
+}
+
+h2 {
+    color: #4ede00;
+}
+
+#detailed-character-image {
+    border-radius: 15px;
+    object-fit: cover;
+    object-position: center;
+    cursor: pointer;
+}
+
+#detailed-character-image:hover {
+    opacity: .6;
+    transform: scale(.9);
+    filter: grayscale(1);
+    transition: ease-in-out 300ms;
+}
+
+.detailed-character-card > div {
+    display: flex;
+    flex-direction: column;
 }
 
 footer {
     align-self: center;
-    padding-bottom: 15px;
+    text-align: center;
+    color: #ffffff;
     height: 50px;
-    color: #353535;
+    padding-bottom: 15px;
+    font-size: 20px;
 }
 
 ::-webkit-scrollbar {
@@ -192,88 +177,165 @@ footer {
     nav {
         max-height: 100px;
         align-items: center;
-        justify-content: center;
-        gap: 20px
-    }
-
-    input {
-        width: auto;
-        height: auto;
-        font-size: 15px;
-        padding: 5px 10px;
+        justify-content: space-around;
     }
     
     #prevPage, #nextPage {
-        font-size: 10px;
-    }
-
-    #container-card {
-        gap: 10px;
-    }
-
-    .card {
-        font-size: 15px;
-        padding: auto;
-        gap: 15px;
-    }
-
-    .card > img {
-        width: 120px !important;
-        height: 140px !important;
-    }
-
-    #close-button {
-        width: 38px;
-        height: 38px;
-        top: 35px;
-        right: 30px;
-    }
-}
-
-@media screen and (max-width: 1439px) {
-    nav {
-        height: 150px;
-        flex-direction: column-reverse;
-    }
-
-    #container-cards {
-        gap: 30px;
-    }
-
-    .card > img {
-        width: 250px;
-        height: 300px;
-    }
-}
-
-
-
-@media screen and (min-width: 1440px) {
-    nav {
-        height: 100px;
-    }
-
-    #prevPage, #nextPage {
-        padding: 8px 30px;
-        font-size: 25px;
+        border-radius: 7px;
+        font-size: 12px;
+        padding: 4px 8px;
     }
 
     input {
-        font-size: 25px;
-        width: 500px;
+        height: auto;
+        width: auto;
+        font-size: 12px;
+        padding: 4px 5px;
+        border-radius: 5px;
     }
 
-    .card {
-        font-size: 19px;
+    nav > div {
+        gap: 5px;
+    }
+
+    #container-cards {
+        gap: 20px;
+    }
+
+    .character-img {
+        width: 35%;
+        height: 30%;
+    }
+
+    .detailed-character-card {
+        border-radius: 15px;
+        padding: 20px 10px;
         gap: 15px;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .detailed-character-card > div {
+        gap: 7px;
+    }
+
+    #detailed-character-image {
+        width: 50%;
+        height: 60%;
+    }
+}
+
+@media screen and (min-width: 426px) {
+    nav > div {
+        gap:20px;
+    }
+    
+    #prevPage, #nextPage {
+        border-radius: 7px;
+        font-size: 15px;
+        padding: 4px 8px;
+    }
+    
+    input {
+        height: auto;
+        width: auto;
+        font-size: 15px;
+        padding: 5px 10px;
+        border-radius: 10px;
+    }
+
+    #container-cards {
+        gap: 20px;
+    }
+
+    .character-img {
+        width: 25%;
+        height: 30%;
+    }
+
+    .detailed-character-card {
+        border-radius: 15px;
+        padding: 40px 30px;
+        gap: 15px;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        font-size: 22px;
+    }
+
+    #detailed-character-image {
+        width: 50%;
+        height: 60%;
     }
 
     h2 {
-        font-size: 30px;
+        font-size: 40px;
+    }
+}
+
+
+
+@media screen and (min-width: 776px) {
+    #prevPage, #nextPage {
+        padding: 5px 20px;
+        font-size: 22px;
     }
 
-    .card > img {
-        width: 230px;
-        height: 270px;
+    input {
+        font-size: 22px;
+        padding: 7px 30px;
+    }
+
+    .character-img {
+        width: 20%;
+        height: 25%;
+    }
+
+    .detailed-character-card {
+        border-radius: 15px;
+        padding: 40px 30px;
+        gap: 30px;
+        text-align: center;
+        flex-direction: row;
+        align-items: center;
+        font-size: 22px;
+    }
+
+    .detailed-character-card > div {
+        flex-direction: column;
+        text-align: left;
+        gap: 20px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #rick-and-morty-logo {
+        margin-top: 20px;
+        width: 360px;
+        height: 84px;
+    }
+
+    .character-img {
+        height: 40%;
+    }
+
+    #detailed-character-image {
+        width: 40%;
+        height: 50%;
+    }
+
+    h2 {
+        font-size: 40px;
+    }
+}
+
+@media screen and (min-width: 2294px) {
+    body {
+        background-position: bottom;
+    }
+
+    footer {
+        font-size: 30px;
     }
 }
