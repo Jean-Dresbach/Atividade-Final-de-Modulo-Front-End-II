@@ -1,10 +1,16 @@
 const api = axios.create();
 
+
+const selectPages = document.getElementById("")
 const containerCards = document.getElementById("container-cards")
-const prevPage = document.getElementById("prevPage")
-const nextPage = document.getElementById("nextPage")
+const prevPageButton = document.getElementById("prevPage")
+const nextPageButton = document.getElementById("nextPage")
+
+prevPageButton.addEventListener("click", goToPrevPage)
+nextPageButton.addEventListener("click", goToNextPage)
 
 let characters
+let info
 
 async function fetchCharacters(url) {
     try {
@@ -13,12 +19,40 @@ async function fetchCharacters(url) {
         const response = await api.get(URL)
 
         characters = response.data.results
-        const info = response.data.info
+        info = response.data.info
+
+        disableButtonsIfPageNull(info)
 
         console.log(response.data)
         showCharacters(characters)
     } catch (error) {
         console.log(`Error when fetching characters: ${error}`)
+    }
+}
+
+function goToPrevPage() {
+    const prevPageUrl = info.prev
+    
+    fetchCharacters(prevPageUrl)
+}
+
+function goToNextPage() {
+    const nextPageUrl = info.next
+    
+    if(nextPageUrl) fetchCharacters(nextPageUrl)
+}
+
+function disableButtonsIfPageNull(info) {
+    if (!info.prev) {
+        prevPageButton.classList.add("disabled-button")
+    } else {
+        prevPageButton.classList.remove("disabled-button")
+    }
+
+    if (!info.next) {
+        nextPageButton.classList.add("disabled-button")
+    } else {
+        nextPageButton.classList.remove("disabled-button")
     }
 }
 

@@ -11,16 +11,23 @@
         <div id="rick-and-morty-logo"></div>
     </header>
     <main>
-        <nav>
-            <div>
-                <button onclick="page()" id="prevPage">Prev</button>
-                <button onclick="page()" id="nextPage">Next</button>
+            <div id="container-pad">
+                <img src="./images/padowner.jpeg" alt="pad owner">
             </div>
-            <input type="text" placeholder="Search character by name">
-        </nav>
-        <div id="container-cards">
-
-        </div>
+            <nav>
+                <div>
+                    <button id="prevPage">Prev</button>
+                    <button id="nextPage">Next</button>
+                </div>
+                <input type="text" placeholder="Search character by name">
+            </nav>
+            <select name="select-pages" id="select-pages">
+                <option value disabled="disabled">Select Page</option>
+            </select>
+            
+            <div id="container-cards">
+            
+            </div>
     </main>
     <footer>
         <small>
