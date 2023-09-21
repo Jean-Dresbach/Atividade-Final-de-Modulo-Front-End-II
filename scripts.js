@@ -15,7 +15,7 @@ let characterName = ''
 let characters
 let info
 
-async function fetchCharacters(page = 1, name = "", selectedOptionIndex) {
+async function fetchCharacters(page = 1, name = "") {
     try {
         const params = {
             page,
@@ -30,7 +30,7 @@ async function fetchCharacters(page = 1, name = "", selectedOptionIndex) {
         info = response.data.info
 
         showCharacters(characters)
-        createOption(selectedOptionIndex)
+        createOption()
         disableButtonsIfPageNull(info)
         updateSelectedPage(page)
     } catch (error) {
@@ -38,7 +38,7 @@ async function fetchCharacters(page = 1, name = "", selectedOptionIndex) {
     }
 }
 
-function createOption(selectedOptionIndex) {
+function createOption() {
     selectPages.innerHTML = `
         <option id="disabled-option" value="" disabled>Select Page</option>
     `
@@ -50,20 +50,10 @@ function createOption(selectedOptionIndex) {
         selectPages.appendChild(option)
     }
 
-    if (selectedOptionIndex) {
-        selectPages.options[selectedOptionIndex].selected = true 
-    }
-
     selectPages.addEventListener("change", () => {
-        const selectedOptionIndex = selectPages.selectedIndex
-
-        selectPages.options[selectedOptionIndex].selected = true
-        
-        const page = selectPages.options[selectedOptionIndex].value
-        
         const name = verificateInput()
 
-        fetchCharacters(page, name, selectedOptionIndex)
+        fetchCharacters(selectPages.value, name)
     })
 }
 
@@ -121,12 +111,14 @@ function createCard(character) {
 
     characterImg.addEventListener("click", (e) => {
         e.preventDefault()
+        
         showDetailedCharacterCard(character)
     })
 }
 
 function showDetailedCharacterCard(character) {
     containerCards.innerHTML = ""
+    
     createDetailedCharacterCard(character)
 }
 
@@ -152,6 +144,7 @@ function createDetailedCharacterCard(character) {
 
     detailedCharacterImage.addEventListener("click", (e) => {
         e.preventDefault()
+        
         closeDetailedCharacterCard(characters)
     })
 
