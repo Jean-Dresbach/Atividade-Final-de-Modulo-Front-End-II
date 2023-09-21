@@ -1,0 +1,436 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    overflow-x: hidden;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
+    background-image: url(../images/cropped-RM_page-header_background1-3.png);
+    width: 100%;
+    min-height: 100vh;
+    gap: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100px;
+}
+
+#rick-and-morty-logo {
+    background-image: url(../images/Rick-And-Morty-Logo.png);
+    background-size: 100% 150%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 300px;
+    height: 70px;
+    margin-top: 15px;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    align-items: center;
+    width: 88vw;
+    max-width: 1270px;
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 0px 10px 20px 2px #a3f9f9;
+}
+
+#container-pad {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px 15px 5px 5px;
+    width: 90vw;
+    max-height: 80px;
+    max-width: 1300px;
+    background-color: #434343;
+    box-shadow: 0px 10px 10px 0 #000000;
+}
+
+#container-pad > img {
+    max-height: 80px;
+    max-width: 500px;
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #00a1fed8;
+    padding: 10px 0;
+    width: 88vw;
+    max-width: 1270px;
+}
+
+input {
+    align-self: flex-end;
+    outline: none;
+    border:none;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    color: #00b5cc;
+    padding: 25px 10px;
+    font-size: 18px;
+    width: 300px;
+    height: 40px;
+    margin-right: 6vw;
+}
+
+input::placeholder {
+    color: #00b5cc;
+}
+
+#container-select-and-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 6vw;
+    width: 88vw;
+    max-width: 1270px;
+}
+
+#container-select {
+    display: flex;
+    justify-content: center;
+    background-color: #00a1fed8;
+    color: white;
+    border-radius: 10px;
+}
+
+select {
+    text-align: center;
+    background-color: transparent;
+    border: 1.5px solid white;
+    color: white;
+    border-radius: 10px;
+}
+
+option {
+    background-color:#00a1fed8 ;
+    color: #B6F300;
+}
+
+#disabled-option {
+    background-color: #1768d5;
+    color: black
+}
+
+.disabled-button {
+    filter: grayscale(.8) !important;
+    opacity: .6 !important;
+    box-shadow: none !important;
+    cursor: default !important;
+}
+
+#prevPage, #nextPage {
+    background-color: #B6F300;
+    color: white;
+    font-size: large;
+    border: none;
+    cursor: pointer;
+}
+
+#prevPage:hover, #nextPage:hover {
+    box-shadow: none;
+}
+
+#container-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    background:linear-gradient(#00a1fed8,#00ffff);
+    width: 88vw;
+    height: 50vh;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    border-radius: 0 0 15px 15px;
+    max-width: 1270px;
+}
+
+.character-img {
+    opacity: .6;
+    filter: grayscale(1);
+    border-radius: 15px;
+    object-fit: cover;
+    object-position: center;
+    cursor: pointer;
+}
+
+.character-img:hover {
+    transform: scale(1.1);
+    filter: grayscale(0);
+    transition: ease-in-out 300ms;
+    opacity: 1;
+
+}
+
+.detailed-character-card {
+    display: flex;
+    background-color: #34008d87;
+    border: 2px solid #fff;
+    color: white;
+}
+
+h2 {
+    color: #4ede00;
+}
+
+#detailed-character-image {
+    border-radius: 15px;
+    object-fit: cover;
+    object-position: center;
+    cursor: pointer;
+}
+
+#detailed-character-image:hover {
+    opacity: .6;
+    transform: scale(.9);
+    filter: grayscale(1);
+    transition: ease-in-out 300ms;
+}
+
+.detailed-character-card > div {
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    align-self: center;
+    text-align: center;
+    color: #ffffff;
+    height: 50px;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+@media screen and (max-width: 425px) {    
+    nav {
+        max-height: 100px;
+        gap: 10px;
+    }
+    
+    input {
+        height: auto;
+        width: auto;
+        font-size: 12px;
+        padding: 4px 10px;
+        border-radius: 5px;
+    }
+
+    select {
+        font-size: 12px;
+    }
+
+    #prevPage, #nextPage {
+        border-radius: 7px;
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+
+    #container-cards {
+        gap: 20px;
+    }
+
+    .character-img {
+        width: 35%;
+        height: 30%;
+        min-height: 120px;
+    }
+
+    .detailed-character-card {
+        border-radius: 15px;
+        padding: 20px 10px;
+        gap: 15px;
+        max-width: 70vw;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        font-size: 12px;
+    }
+
+    .detailed-character-card > div {
+        gap: 7px;
+    }
+
+    #detailed-character-image {
+        width: 50%;
+        height: 60%;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    footer {
+        font-size: 15px;
+    }
+}
+
+@media screen and (min-width: 426px) {
+    nav {
+        gap: 10px;
+    }
+    
+    #prevPage, #nextPage {
+        border-radius: 7px;
+        font-size: 16px;
+        padding: 6px 15px;
+    }
+    
+    input {
+        height: auto;
+        width: auto;
+        font-size: 17px;
+        padding: 6px 20px;
+        border-radius: 5px;
+    }
+
+    select {
+        font-size: 15px;
+    }
+
+    #container-cards {
+        gap: 20px;
+    }
+
+    .character-img {
+        width: 25%;
+        height: 30%;
+        min-height: 120px;
+    }
+
+    .detailed-character-card {
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        max-width: 70vw;
+        border-radius: 15px;
+        padding: 25px 15px;
+        gap: 15px;
+        font-size: 16px;
+    }
+
+    .detailed-character-card > div {
+        gap: 10px;
+    }
+
+    #detailed-character-image {
+        width: 40%;
+        height: 50%;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+}
+
+
+
+@media screen and (min-width: 776px) {
+    nav {
+        padding: 20px 0;
+    }
+    
+    #prevPage, #nextPage {
+        padding: 5px 20px;
+        font-size: 22px;
+    }
+
+    input {
+        font-size: 22px;
+        padding: 7px 30px;
+    }
+
+    #container-cards {
+        height: 45vh;
+        padding-top: 10px;
+        padding-bottom: 15px;
+    }
+
+    .character-img {
+        width: 20%;
+        height: 25%;
+    }
+
+    .detailed-character-card {
+        border-radius: 15px;
+        padding: 30px 30px;
+        gap: 30px;
+        text-align: center;
+        flex-direction: row;
+        align-items: center;
+        font-size: 18px;
+    }
+
+    #detailed-character-image {
+        width: 40%;
+        height: 50%;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+
+    .detailed-character-card > div {
+        flex-direction: column;
+        text-align: left;
+        gap: 20px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    nav {
+        gap: 20px;
+    }
+    
+    #rick-and-morty-logo {
+        margin-top: 20px;
+        width: 360px;
+        height: 84px;
+    }
+
+    .character-img {
+        height: 40%;
+    }
+
+    #detailed-character-image {
+        width: 30%;
+        height: 35%;
+    }
+}
+
+@media screen and (min-width: 2294px) {
+    body {
+        background-position: bottom;
+    }
+
+    footer {
+        font-size: 30px;
+    }
+}

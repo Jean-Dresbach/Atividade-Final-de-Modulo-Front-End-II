@@ -4,9 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rick and Morty</title>
-    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
+    <header>
+        <div id="rick-and-morty-logo"></div>
+    </header>
+    <main>
+            <div id="container-pad">
+                <img src="./images/padowner.jpeg" alt="pad owner">
+            </div>
+            <nav>
+                <input id="search-characters-by-name" type="text" placeholder="Search character by name">
+                <div id="container-select-and-button">
+                    <div id="container-select">
+                        <select id="select-pages">
+                            <option id="disabled-option" value="" disabled>Select Page</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button id="prevPage">Prev</button>
+                        <button id="nextPage">Next</button>
+                    </div>
+                </div>
+            </nav>
+            <div id="container-cards">
+            
+            </div>
+    </main>
+    <footer>
+        <small>
+            <span><i>Developed by Jean Rafael Dresbach in 2023</i></span>
+        </small>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./scripts.js"></script>
 </body>
 </html>
