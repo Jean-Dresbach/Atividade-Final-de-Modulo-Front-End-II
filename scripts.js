@@ -1,4 +1,6 @@
-const api = axios.create();
+const api = axios.create({
+    baseURL: "https://rickandmortyapi.com/api"
+});
 
 const searchCharactersByName = document.getElementById("search-characters-by-name")
 const selectPages = document.getElementById("select-pages")
@@ -8,24 +10,29 @@ const nextPageButton = document.getElementById("nextPage")
 
 prevPageButton.addEventListener("click", goToPrevPage)
 nextPageButton.addEventListener("click", goToNextPage)
-selectPages.addEventListener("change", selectPage)
 
+let characterName = ''
 let characters
 let info
 
-async function fetchCharacters(url, selectedOptionIndex) {
+async function fetchCharacters(page = 1, name = "", selectedOptionIndex) {
     try {
-        const URL = url ?? "https://rickandmortyapi.com/api/character"
-        
-        const response = await api.get(URL)
+        const params = {
+            page,
+            name
+          }
+
+        const response = await api.get("/character/", {
+            params
+        })
 
         characters = response.data.results
         info = response.data.info
 
-        console.log(response.data)
         showCharacters(characters)
         createOption(selectedOptionIndex)
         disableButtonsIfPageNull(info)
+        updateSelectedPage(page)
     } catch (error) {
         console.log(`Error when fetching characters: ${error}`)
     }
@@ -38,7 +45,7 @@ function createOption(selectedOptionIndex) {
 
     for (let index = 1; index <= info.pages; index++) {
         const option = document.createElement("option")    
-        option.value = `https://rickandmortyapi.com/api/character/?page=${index}`
+        option.value = index
         option.innerText = `Page ${index}`
         selectPages.appendChild(option)
     }
@@ -46,52 +53,55 @@ function createOption(selectedOptionIndex) {
     if (selectedOptionIndex) {
         selectPages.options[selectedOptionIndex].selected = true 
     }
+
+    selectPages.addEventListener("change", () => {
+        const selectedOptionIndex = selectPages.selectedIndex
+
+        selectPages.options[selectedOptionIndex].selected = true
+        
+        const page = selectPages.options[selectedOptionIndex].value
+        
+        const name = verificateInput()
+
+        fetchCharacters(page, name, selectedOptionIndex)
+    })
 }
 
-function selectPage(e) {
-    e.preventDefault()
-    
-    selectPages.options[selectPages.selectedIndex].selected = true
-    const selectedOptionUrl = selectPages.options[selectPages.selectedIndex].value
-    const selectedOptionIndex = selectPages.selectedIndex
+function verificateInput() {
+    if(searchCharactersByName.value !== "")
 
-    fetchCharacters(selectedOptionUrl, selectedOptionIndex)
+    return searchCharactersByName.value
 }
+
+function updateSelectedPage(currentPage) {
+    selectPages.value = currentPage
+}
+
 
 function goToPrevPage() {
     const prevPageUrl = info.prev
-    for (let index = 0; index < selectPages.options.length; index++) {
-        if (selectPages.options[index].value === prevPageUrl) {
-            const selectedOptionIndex = index
-            fetchCharacters(prevPageUrl, selectedOptionIndex)
-            break
-        }
-    } 
+
+    const prevPage = Number(prevPageUrl.split('?page=')[1].split("&")[0])
+
+    const name = verificateInput()
+
+    fetchCharacters(prevPage, name)
 }
 
 function goToNextPage() {
     const nextPageUrl = info.next
-    for (let index = 0; index < selectPages.options.length; index++) {
-        if (selectPages.options[index].value === nextPageUrl) {
-            const selectedOptionIndex = index
-            fetchCharacters(nextPageUrl, selectedOptionIndex)
-            break
-        }
-    }    
+
+    const nextPage = Number(nextPageUrl.split('?page=')[1].split("&")[0])
+
+    const name = verificateInput()
+
+    fetchCharacters(nextPage, name)
 }
 
 function disableButtonsIfPageNull(info) {
-    if (!info.prev) {
-        prevPageButton.classList.add("disabled-button")
-    } else {
-        prevPageButton.classList.remove("disabled-button")
-    }
-
-    if (!info.next) {
-        nextPageButton.classList.add("disabled-button")
-    } else {
-        nextPageButton.classList.remove("disabled-button")
-    }
+    !info.prev ? prevPageButton.classList.add("disabled-button") : prevPageButton.classList.remove("disabled-button")
+    
+    !info.next ? nextPageButton.classList.add("disabled-button") : nextPageButton.classList.remove("disabled-button")
 }
 
 function showCharacters(characters) {
@@ -113,6 +123,11 @@ function createCard(character) {
         e.preventDefault()
         showDetailedCharacterCard(character)
     })
+}
+
+function showDetailedCharacterCard(character) {
+    containerCards.innerHTML = ""
+    createDetailedCharacterCard(character)
 }
 
 function createDetailedCharacterCard(character) {
@@ -143,15 +158,6 @@ function createDetailedCharacterCard(character) {
     return detailedCharacterCard
 }
 
-function closeDetailedCharacterCard(characters) {
-    showCharacters(characters)
-}
-
-function showDetailedCharacterCard(character) {
-    containerCards.innerHTML = ""
-    createDetailedCharacterCard(character)
-}
-
 function defineStatusColor(character) {
     let statusColor = ""
     if (character.status === "Alive") {
@@ -165,11 +171,16 @@ function defineStatusColor(character) {
     return statusColor
 }
 
-searchCharactersByName.addEventListener('input', () => {
-    const url = `https://rickandmortyapi.com/api/character/?name=${searchCharactersByName.value}`
+function closeDetailedCharacterCard(characters) {
+    fetchCharacters()
+}
 
-    fetchCharacters(url)
+searchCharactersByName.addEventListener('input', () => {
+    const page = 1
+
+    characterName = searchCharactersByName.value
+
+    fetchCharacters(page, characterName)
 })
-  
 
 fetchCharacters()
