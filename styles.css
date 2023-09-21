@@ -260,6 +260,7 @@ footer {
     .character-img {
         width: 35%;
         height: 30%;
+        min-height: 120px;
     }
 
     .detailed-character-card {
@@ -321,6 +322,7 @@ footer {
     .character-img {
         width: 25%;
         height: 30%;
+        min-height: 120px;
     }
 
     .detailed-character-card {
