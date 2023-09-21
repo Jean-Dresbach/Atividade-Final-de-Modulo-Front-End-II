@@ -6,7 +6,7 @@
 
 Using the [Rick and Morty API](https://rickandmortyapi.com/) and its [documentation](https://rickandmortyapi.com/documentation/#rest) to obtain character data from the Rick and Morty series together with the [Axios library](https://axios-http.com/ptbr/docs/intro) to consume the API, a web application was made to list the characters.
 
-- ### Established rules: ::page_with_curl::
+- ### Established rules: :page_with_curl:
 
 #### The character list must have:
 
