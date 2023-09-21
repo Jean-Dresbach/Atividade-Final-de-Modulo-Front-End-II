@@ -133,8 +133,8 @@ option {
 }
 
 #disabled-option {
-    background-color: #000000d8;
-    color: white;
+    background-color: #1768d5;
+    color: black
 }
 
 .disabled-button {
